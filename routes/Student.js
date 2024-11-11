@@ -883,6 +883,27 @@ router.get("/Search_Batch_Typeahead_Report_New/", function (req, res, next) {
 });
 
 
+router.get("/Search_Batch_Typeahead_Report_New1/", function (req, res, next) {
+    try {
+        Student.Search_Batch_Typeahead_Report_New1(
+            req.query.Batch_Name,
+            req.query.Login_User,
+            req.query.Trainer,
+            function (err, rows) {
+                if (err) {
+                    console.log(err);
+                    res.json(err);
+                } else {
+                    res.json(rows);
+                }
+            }
+        );
+    } catch (e) {
+    } finally {
+    }
+});
+
+
 
 router.get("/Search_Batch_Typeahead_Attendance/", function (req, res, next) {
 	try {

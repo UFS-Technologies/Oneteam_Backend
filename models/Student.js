@@ -410,6 +410,14 @@ var Student = {
         );
     },
 
+	Search_Batch_Typeahead_Report_New1: function (Batch_Name, Login_User,Trainer, callback) {
+        if (Batch_Name === undefined || Batch_Name === "undefined") Batch_Name = "";
+        return db.query(
+            "CALL Search_Batch_Typeahead_Report_New1(@Batch_Name :=?,@Login_User :=?,@Trainer :=?)",
+            [Batch_Name, Login_User,Trainer],
+            callback
+        );
+    },
 
 
 
