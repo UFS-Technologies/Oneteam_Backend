@@ -3652,10 +3652,565 @@ Save_Level_Score_Student: async function (Level_Score_Master_) {
     });
 },
 
+
+
+
+// api_brochure_course_whatsapp: async function (Save_Whatsapp_) {
+
+// 	try {
+// 		console.log(Save_Whatsapp_,'Save_Whatsapp_')
+// if(Save_Whatsapp_.Course_Id==1)
+// {
+// 	const data = {
+// 		"to": ""+Save_Whatsapp_.to+"",
+// 		"type": "template",
+// 		"templateName": "api_brochure_python_arjun_jan2025",
+// 		"language": "en",
+// 		"header": {
+// 		"parameters": [
+// 		{
+// 			"type": "document",
+// 			"document": {
+// 			"link": "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Pyhon-1.pdf",
+// 			"filename": "python brochure.pdf"
+// 			}
+// 		}
+// 		]
+// 	},
+// 		"body":{
+// 			"parameters": [
+// 				{
+// 					"type": "text",
+// 					"text": Save_Whatsapp_.student
+// 				},
+// 				{
+// 					"type": "text",
+// 					"text": Save_Whatsapp_.Course
+// 				},
+// 				{
+// 					"type": "text",
+// 					"text": Save_Whatsapp_.tostaff
+// 				},
+// 				{
+// 					"type": "text",
+// 					"text": Save_Whatsapp_.tostaff_mobile
+// 				}
+// 			]
+// 		},
+// 		"button": null
+// 	};
+// }
+
+// if(Save_Whatsapp_.Course_Id==2)
+// 	{
+// 		const data = {
+// 			"to": ""+Save_Whatsapp_.to+"",
+// 			"type": "template",
+// 			"templateName": "api_dm_brochure_arjun_jan2025",
+// 			"language": "en",
+// 			"header": {
+// 			"parameters": [
+// 			{
+// 				"type": "document",
+// 				"document": {
+// 				"link": "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_DM-1.pdf",
+// 				"filename": "digital marketing brochure.pdf"
+// 				}
+// 			}
+// 			]
+// 		},
+// 			"body":{
+// 				"parameters": [
+// 					{
+// 						"type": "text",
+// 						"text": Save_Whatsapp_.student
+// 					},
+// 					{
+// 						"type": "text",
+// 						"text": Save_Whatsapp_.Course
+// 					},
+// 					{
+// 						"type": "text",
+// 						"text": Save_Whatsapp_.tostaff
+// 					},
+// 					{
+// 						"type": "text",
+// 						"text": Save_Whatsapp_.tostaff_mobile
+// 					}
+// 				]
+// 			},
+// 			"button": null
+// 		};
+// 	}
+	
+	
+// 	if(Save_Whatsapp_.Course_Id==6||Save_Whatsapp_.Course_Id==14)
+// 		{
+// 			const data = {
+// 				"to": ""+Save_Whatsapp_.to+"",
+// 				"type": "template",
+// 				"templateName": "api_brochure_mernstack_arjun_jan2025",
+// 				"language": "en",
+// 				"header": {
+// 				"parameters": [
+// 				{
+// 					"type": "document",
+// 					"document": {
+// 					"link": "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_mern.pdf",
+// 					"filename": "mernstack brochure.pdf"
+// 					}
+// 				}
+// 				]
+// 			},
+// 				"body":{
+// 					"parameters": [
+// 						{
+// 							"type": "text",
+// 							"text": Save_Whatsapp_.student
+// 						},
+// 						{
+// 							"type": "text",
+// 							"text": Save_Whatsapp_.Course
+// 						},
+// 						{
+// 							"type": "text",
+// 							"text": Save_Whatsapp_.tostaff
+// 						},
+// 						{
+// 							"type": "text",
+// 							"text": Save_Whatsapp_.tostaff_mobile
+// 						}
+// 					]
+// 				},
+// 				"button": null
+// 			};
+// 		}
+	
+		
+// 		if(Save_Whatsapp_.Course_Id==3)
+// 			{
+// 				const data = {
+// 					"to": ""+Save_Whatsapp_.to+"",
+// 					"type": "template",
+// 					"templateName": "api_brochure_softwaretesting_arjun_jan2025",
+// 					"language": "en",
+// 					"header": {
+// 					"parameters": [
+// 					{
+// 						"type": "document",
+// 						"document": {
+// 						"link": "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Testing.pdf",
+// 						"filename": "software testing brochure.pdf"
+// 						}
+// 					}
+// 					]
+// 				},
+// 					"body":{
+// 						"parameters": [
+// 							{
+// 								"type": "text",
+// 								"text": Save_Whatsapp_.student
+// 							},
+// 							{
+// 								"type": "text",
+// 								"text": Save_Whatsapp_.Course
+// 							},
+// 							{
+// 								"type": "text",
+// 								"text": Save_Whatsapp_.tostaff
+// 							},
+// 							{
+// 								"type": "text",
+// 								"text": Save_Whatsapp_.tostaff_mobile
+// 							}
+// 						]
+// 					},
+// 					"button": null
+// 				};
+// 			}
+				
+
+// 			// console.log(body)
+// 			const response = await axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, { headers: {
+// 				'Content-Type': 'application/json',
+// 				'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+// 			} });
+// 		// console.log(body)
+// 		//console.log(response)
+// 		return response.data;
+		
+// 	}
+	
+// 	 catch (error) {
+// 		// console.log(response)
+// 		console.log(error)
+// 		throw error;
+// 	}
+// }
+
+// ,
+
+// api_brochure_python_arjun_jan2025: async function (Save_Whatsapp_) {
+// 	try {
+// 	  console.log(Save_Whatsapp_, 'Save_Whatsapp_');
+  
+// 	  let data; // Declare data variable outside all conditions
+  
+// 		data = {
+			
+// 		  "to": "" + Save_Whatsapp_.to + "",
+// 		  "type": "template",
+// 		  "templateName": "api_brochure_python_arjun_jan2025",
+// 		  "language": "en",
+// 		  "header": {
+// 			"parameters": [
+// 			  {
+// 				"type": "document",
+// 				"document": {
+// 				  "link": "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Pyhon-1.pdf",
+// 				  "filename": "python brochure.pdf"
+// 				}
+// 			  }
+// 			]
+// 		  },
+// 		  "body": {
+// 			"parameters": [
+// 			  { "type": "text", "text": Save_Whatsapp_.student },
+// 			  { "type": "text", "text": Save_Whatsapp_.Course },
+// 			  { "type": "text", "text": Save_Whatsapp_.tostaff },
+// 			  { "type": "text", "text": Save_Whatsapp_.tostaff_mobile }
+// 			]
+// 		  },
+// 		  "button": null
+// 		};
+	
+// 		console.log('data: ', data);
+  
+// 	  // Ensure data is defined before making the API call
+// 	  if (!data) {
+// 		throw new Error('Invalid Course_Id or no data available for the template.');
+// 	  }
+  
+// 	  const response = await axios.post(
+// 		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+// 		data,
+// 		{
+// 		  headers: {
+// 			'Content-Type': 'application/json',
+// 			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+// 		  }
+// 		}
+// 	  );
+// 	  console.log('response.data: ', response.data);
+// 	  return response.data;
+	
+  
+// 	} catch (error) {
+// 	  throw error;
+// 	}
+//   }
+//   ,
+
+
+// api_brochure_python_arjun_jan2025: async function (Save_Whatsapp_) {
+// 	try {
+// 	  console.log('Save_Whatsapp_ data:', JSON.stringify(Save_Whatsapp_, null, 2));
+  
+// 	  // Build the request data
+// 	  const data = {
+// 		to: Save_Whatsapp_.to,
+// 		type: "template",
+// 		templateName: "api_brochure_python_arjun_jan2025",
+// 		language: "en",
+// 		header: {
+// 		  parameters: [
+// 			{
+// 			  type: "document",
+// 			  document: {
+// 				link: "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Pyhon-1.pdf",
+// 				filename: "python_brochure.pdf"
+// 			  }
+// 			}
+// 		  ]
+// 		},
+// 		body: {
+// 		  parameters: [
+// 			{ type: "text", text: Save_Whatsapp_.student },
+// 			{ type: "text", text: Save_Whatsapp_.Course },
+// 			{ type: "text", text: Save_Whatsapp_.tostaff },
+// 			{ type: "text", text: Save_Whatsapp_.tostaff_mobile }
+// 		  ]
+// 		}
+// 	  };
+  
+// 	  console.log('Request data:', JSON.stringify(data, null, 2));
+  
+// 	  // Send the API request
+// 	  const response = await axios.post(
+// 		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+// 		data,
+// 		{
+// 		  headers: {
+// 			'Content-Type': 'application/json',
+// 			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+// 		  }
+// 		}
+// 	  );
+  
+// 	  console.log('API Response:', response.data);
+// 	  return response.data;
+  
+// 	} catch (error) {
+// 	  console.error('Error:', error.response ? error.response.data : error.message);
+// 	  throw error;
+// 	}
+//   }
+//   ,
+
+api_brochure_python_arjun_jan2025: async function (Save_Whatsapp_) {
+	try {
+	  console.log('Save_Whatsapp_ data:', JSON.stringify(Save_Whatsapp_, null, 2));
+  
+	  // Build the request data
+	  const data = {
+		to: Save_Whatsapp_.to,
+		type: "template",
+		templateName: "api_brochure_python_arjun_jan2025",
+		language: "en",
+		header: {
+		  parameters: [
+			{
+			  type: "document",
+			  document: {
+				link: "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Pyhon-1.pdf",
+				filename: "python_brochure.pdf"
+			  }
+			}
+		  ]
+		},
+		body: {
+		  parameters: [
+			{ type: "text", text: Save_Whatsapp_.student },
+			{ type: "text", text: Save_Whatsapp_.Course },
+			{ type: "text", text: Save_Whatsapp_.tostaff },
+			{ type: "text", text: Save_Whatsapp_.tostaff_mobile }
+		  ]
+		}
+	  };
+  
+	  console.log('Request data:', JSON.stringify(data, null, 2));
+  
+	  // Send the API request
+	  const response = await axios.post(
+		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+		data,
+		{
+		  headers: {
+			'Content-Type': 'application/json',
+			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+		  }
+		}
+	  );
+  
+	  console.log('API Response:', response.data);
+  
+	  // Check if the API response is successful and update the status in the database
+	  console.log('API Response:', response.data);
+	  if (response.data.message === 'Created Successfully') {
+		// Assuming you have a function to call the stored procedure to update the WhatsApp status
+		await db.promise().query("CALL update_whatsapp_status(?)", [Save_Whatsapp_.Student_Id]);
+    //   console.log('WhatsApp message status updated to 1');
+	  }
+	  return response.data;
+  
+	} catch (error) {
+	  console.error('Error:', error.response ? error.response.data : error.message);
+	  throw error;
+	}
+  }
+,  
+
+api_dm_brochure_arjun_jan2025: async function (Save_Whatsapp_) {
+	try {
+	  console.log('Save_Whatsapp_ data:', JSON.stringify(Save_Whatsapp_, null, 2));
+  
+	  // Build the request data
+	  const data = {
+		to: Save_Whatsapp_.to,
+		type: "template",
+		templateName: "api_dm_brochure_arjun_jan2025",
+		language: "en",
+		header: {
+		  parameters: [
+			{
+			  type: "document",
+			  document: {
+				link: "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_DM-1.pdf",
+				filename: "digital_marketing.pdf"
+			  }
+			}
+		  ]
+		},
+		body: {
+		  parameters: [
+			{ type: "text", text: Save_Whatsapp_.student },
+			{ type: "text", text: Save_Whatsapp_.Course },
+			{ type: "text", text: Save_Whatsapp_.tostaff },
+			{ type: "text", text: Save_Whatsapp_.tostaff_mobile }
+		  ]
+		}
+	  };
+  
+	  console.log('Request data:', JSON.stringify(data, null, 2));
+  
+	  // Send the API request
+	  const response = await axios.post(
+		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+		data,
+		{
+		  headers: {
+			'Content-Type': 'application/json',
+			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+		  }
+		}
+	  );
+  
+	  console.log('API Response:', response.data);
+	    console.log('API Response:', response.data);
+	  if (response.data.message === 'Created Successfully') {
+		// Assuming you have a function to call the stored procedure to update the WhatsApp status
+		await db.promise().query("CALL update_whatsapp_status(?)", [Save_Whatsapp_.Student_Id]);
+    //   console.log('WhatsApp message status updated to 1');
+	  }
+	  return response.data;
+  
+	} catch (error) {
+	  console.error('Error:', error.response ? error.response.data : error.message);
+	  throw error;
+	}
+  }
+  ,
+api_brochure_mernstack_arjun_jan2025: async function (Save_Whatsapp_) {
+	try {
+	  console.log('Save_Whatsapp_ data:', JSON.stringify(Save_Whatsapp_, null, 2));
+  
+	  // Build the request data
+	  const data = {
+		to: Save_Whatsapp_.to,
+		type: "template",
+		templateName: "api_brochure_mernstack_arjun_jan2025",
+		language: "en",
+		header: {
+		  parameters: [
+			{
+			  type: "document",
+			  document: {
+				link: "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_mern.pdf",
+				filename: "mernstack"
+			  }
+			}
+		  ]
+		},
+		body: {
+		  parameters: [
+			{ type: "text", text: Save_Whatsapp_.student },
+			{ type: "text", text: Save_Whatsapp_.Course },
+			{ type: "text", text: Save_Whatsapp_.tostaff },
+			{ type: "text", text: Save_Whatsapp_.tostaff_mobile }
+		  ]
+		}
+	  };
+  
+	  console.log('Request data:', JSON.stringify(data, null, 2));
+  
+	  // Send the API request
+	  const response = await axios.post(
+		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+		data,
+		{
+		  headers: {
+			'Content-Type': 'application/json',
+			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+		  }
+		}
+	  );
+  
+	  console.log('API Response:', response.data);
+	  if (response.data.message === 'Created Successfully') {
+		// Assuming you have a function to call the stored procedure to update the WhatsApp status
+		await db.promise().query("CALL update_whatsapp_status(?)", [Save_Whatsapp_.Student_Id]);
+    //   console.log('WhatsApp message status updated to 1');
+	  }
+	  return response.data;
+  
+	} catch (error) {
+	  console.error('Error:', error.response ? error.response.data : error.message);
+	  throw error;
+	}
+  }
+  ,
+api_brochure_softwaretesting_arjun_jan2025: async function (Save_Whatsapp_) {
+	try {
+	  console.log('Save_Whatsapp_ data:', JSON.stringify(Save_Whatsapp_, null, 2));
+  
+	  // Build the request data
+	  const data = {
+		to: Save_Whatsapp_.to,
+		type: "template",
+		templateName: "api_brochure_softwaretesting_arjun_jan2025",
+		language: "en",
+		header: {
+		  parameters: [
+			{
+			  type: "document",
+			  document: {
+				link: "https://oneteam1267.trackbox.in/one_team_assets/pdf/Flyer_Testing.pdf",
+				filename: "software_testing"
+			  }
+			}
+		  ]
+		},
+		body: {
+		  parameters: [
+			{ type: "text", text: Save_Whatsapp_.student },
+			{ type: "text", text: Save_Whatsapp_.Course },
+			{ type: "text", text: Save_Whatsapp_.tostaff },
+			{ type: "text", text: Save_Whatsapp_.tostaff_mobile }
+		  ]
+		}
+	  };
+  
+	  console.log('Request data:', JSON.stringify(data, null, 2));
+  
+	  // Send the API request
+	  const response = await axios.post(
+		"https://api.telinfy.net/gaca/whatsapp/templates/message",
+		data,
+		{
+		  headers: {
+			'Content-Type': 'application/json',
+			'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+		  }
+		}
+	  );
+  
+	  console.log('API Response:', response.data);
+	  if (response.data.message === 'Created Successfully') {
+		// Assuming you have a function to call the stored procedure to update the WhatsApp status
+		await db.promise().query("CALL update_whatsapp_status(?)", [Save_Whatsapp_.Student_Id]);
+    //   console.log('WhatsApp message status updated to 1');
+	  }
+	  return response.data;
+  
+	} catch (error) {
+	  console.error('Error:', error.response ? error.response.data : error.message);
+	  throw error;
+	}
+  }
+  ,
 					
 };
 module.exports = Student;
-
 
 
 

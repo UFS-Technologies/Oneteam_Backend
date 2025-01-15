@@ -103,6 +103,8 @@ console.log(Student1)
 				Parent_spouse_contact_no: req.body.Parent_spouse_contact_no,
 				Parent_spouse_idcard: req.body.Parent_spouse_idcard,
 				Parent_spouse_idcard_File: tempFile_Nmae_Parent_spouse_idcard,
+				Offline_class_preference: req.body.Offline_class_preference,
+				
 
 
 				// Resume_Status_Id: req.body.Resume_Status_Id,
@@ -3985,7 +3987,63 @@ router.post("/Save_Level_Score_Student/", async function (req, res, next) {
 	}
 });
 
+// router.post("/api_brochure_course_whatsapp/", async function (req, res, next) {
+// 	try {
+// 		const resp = await Student.api_brochure_course_whatsapp(req.body);
+// 		return res.send(resp);
+// 	} catch (e) {
+// 		console.log(e)
+// 		return res.send(e);
+// 	}
+// });
 
+
+router.post("/api_brochure_python_arjun_jan2025/", async function (req, res, next) {
+	try {
+		const resp = await Student.api_brochure_python_arjun_jan2025(req.body);
+		return res.send(resp);
+	} catch (e) {
+		console.log(e)
+		return res.send(e);
+	}
+});
+router.post("/api_dm_brochure_arjun_jan2025/", async function (req, res, next) {
+	try {
+		const resp = await Student.api_dm_brochure_arjun_jan2025(req.body);
+		return res.send(resp);
+	} catch (e) {
+		console.log(e)
+		return res.send(e);
+	}
+});
+router.post("/api_brochure_mernstack_arjun_jan2025/", async function (req, res, next) {
+	try {
+		const resp = await Student.api_brochure_mernstack_arjun_jan2025(req.body);
+		return res.send(resp);
+	} catch (e) {
+		console.log(e)
+		return res.send(e);
+	}
+});
+router.post("/api_brochure_softwaretesting_arjun_jan2025/", async function (req, res, next) {
+	try {
+		const resp = await Student.api_brochure_softwaretesting_arjun_jan2025(req.body);
+		return res.send(resp);
+	} catch (e) {
+		console.log(e)
+		return res.send(e);
+	}
+});
+
+router.post("/api_learner_feedback_arjun_jan2025/", async function (req, res, next) {
+	try {
+		const resp = await Student.api_learner_feedback_arjun_jan2025(req.body);
+		return res.send(resp);
+	} catch (e) {
+		console.log(e)
+		return res.send(e);
+	}
+});
 
 
 module.exports = router;

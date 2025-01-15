@@ -6,6 +6,7 @@ var CronJob = require('cron').CronJob;
 const axios = require('axios');
 const nodemailer = require("nodemailer");
 const fetch = require("node-fetch");
+var storedProcedure=require('./helpers/stored-procedure');
 var FCM = require('fcm-node');
     var serverKey = 'AAAAP1i3MJ0:APA91bHASQ7S7EkOPtLtVG7y3VxVsXWAi2LXsSFXwZWeTXIT5iG9usMyXXkckY_frLJ2JwOy4-aYQs7_BKaMjopHfdqQp94jvICyn1j-9kd5hP_SwM-3svy7Fq6xMf6Ml_O9YhIf7L1B';
     var fcm = new FCM(serverKey);
@@ -104,6 +105,78 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", routes);
 app.use("/Login", Login);
 app.use('/Public_Data',Public_Data);
+
+
+
+
+
+
+
+app.post("/Post_GoogleSheet_Lead/", async function (req, res, next) {
+  try {
+    const pool = db.promise();
+    var connection = await pool.getConnection();
+    var Lead_ = req.body.data;
+
+    try {
+
+      console.dir(req.body);
+
+      if (Lead_['What is your Full Name?'] == undefined || Lead_['What is your Full Name?'] == 'What is your Full Name?') {
+        console.log("invalid")
+        return res.send({
+          "success": "false"
+        })
+
+      } else {
+        // if (typeof Lead_['Age '] !== "number" || isNaN(Lead_['Age '])) {
+        //   Lead_['Age '] = 0;
+        // }
+        // if (typeof Lead_['Percentage (%) ?'] !== "number" || isNaN(Lead_['Percentage (%) ?'])) {
+        //   Lead_['Percentage (%) ?'] = 0;
+        // }
+        // if (typeof Lead_['pass out Year '] !== "number" || isNaN(Lead_['pass out Year '])) {
+        //   Lead_['pass out Year '] = 0;
+        // }
+        // Lead_['Passport '] = Lead_['Passport '].toLowerCase().includes('yes') ? 1 : 0;
+        let t = await (new storedProcedure('Post_GoogleSheet_Lead', [
+
+          Lead_['What is your Full Name?'],
+          Lead_['Phone number'],
+          Lead_['Email'],
+          Lead_['City'], 
+          Lead_['What is your Qualification'],
+          Lead_['Do you prefer Offline classes?'], 
+        ], connection)).result();
+        console.log('t: ', t);
+
+        var result = {
+          Student_Name: t[0].Student_Name_,
+          Student_Id: t[0].Student_Id_,
+        }
+        // io.emit("new-message", result);
+        connection.release();
+
+        return res.send(result);
+      }
+
+    }
+    catch (err) {
+      console.log("err",err);
+      await connection.rollback();
+      return res.send(err);
+    }
+  } catch (e) {
+    console.log("e",e);
+    return res.send(e);
+  } finally {
+  }
+});
+
+
+
+
+
 
 app.use(jwt());
 
@@ -931,6 +1004,112 @@ var Automatic_App_Notification = function(callback)
 catch(e){console.log(e)}
 } , null, true, 'America/Los_Angeles'); 
 job1.start();
+
+
+
+
+
+
+
+//  feedback start
+
+
+
+
+var feedback_whatsapp_data = function (callback) {
+  return db.query("CALL feedback_whatsapp_data()", [], callback);
+};
+
+// Schedule the cron job for every Saturday at 7:00 PM
+// var fdbck = cron.schedule('00 19 00 * 6', async function () {
+  var fdbck = cron.schedule('00 00 00 * * *',function()  {
+  // var fdbck = cron.schedule('20 14 * * 3', async function () {
+  try {
+    feedback_whatsapp_data(async function (err, rows) {
+      if (err) {
+        console.error('Database error:', err);
+      } else {
+        const dataRows = rows[0]; // Stored procedure result
+        console.log('Retrieved rows:', dataRows);
+
+        for (let i = 0; i < dataRows.length; i++) {
+          const d1 = dataRows[i];
+
+          const data = {
+            to: `91${d1.Whatsapp}`, // Ensure this is a valid phone number
+            type: "template",
+            templateName: "api_learner_feedback_arjun_jan2025",
+            language: "en",
+            header: null,
+            body: {
+              parameters: [
+                {
+                  type: "text",
+                  text: d1.Student_Name,
+                },
+                {
+                  type: "text",
+                  text: d1.Faculty_Name,
+                },
+              ],
+            },
+            button: null,
+          };
+
+          try {
+            const response = await axios.post(
+              "https://api.telinfy.net/gaca/whatsapp/templates/message",
+              data,
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa',
+                },
+              }
+            );
+            console.log('WhatsApp API response:', response.data);
+          } catch (apiError) {
+            console.error('Error sending WhatsApp message:', apiError.response?.data || apiError.message);
+          }
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error in cron job:', e.message);
+  }
+}, null, true, 'America/Los_Angeles');
+
+fdbck.start();
+
+
+
+
+// feedback end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 io.on('connection', (socket) => {
   socket.on('new-message', (message) => {
