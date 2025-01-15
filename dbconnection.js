@@ -10,7 +10,7 @@ var connection = mysql.createPool({
 
    host: "localhost",
 	user: "root",
-	password: "sree@1234",
+	password: "root",
 	// database: "oneteam_12_12",   
     // database: "1tm_live_04_04",
     // database: "oneteam_31_08_2024",
