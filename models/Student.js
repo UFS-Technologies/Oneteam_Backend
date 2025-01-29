@@ -2675,9 +2675,18 @@ Search_Agreement_Details: function (Is_Date_, From_Date_, To_Date_, Course_,Batc
             try {
                 // console.log(""+Save_Whatsapp_.to+"")
                 console.log(Save_Whatsapp_)
+
+				function sanitizeString(str) {
+					// Remove newlines, tabs, and more than 4 consecutive spaces
+					return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+				  }
+				  const to = sanitizeString(Save_Whatsapp_.to.toString()); // Ensure it's a string
+				  const student = sanitizeString(Save_Whatsapp_.student);
+				  const tostaff = sanitizeString(Save_Whatsapp_.tostaff.toString()); 
+				  
                 const data = {
                     // "to": ""+Save_Whatsapp_.to+"",
-                    "to": Save_Whatsapp_.to,
+                    "to": to,
                     "type": "template",
                     "templateName": "api_enquiry_arjun_19thjan2023",
                     "language": "en",
@@ -2687,11 +2696,11 @@ Search_Agreement_Details: function (Is_Date_, From_Date_, To_Date_, Course_,Batc
                         "parameters": [
                             {
                                 "type": "text",
-                                "text": Save_Whatsapp_.student
+                                "text": student
                             },
                             {
                                 "type": "text",
-                                "text": Save_Whatsapp_.tostaff
+                                "text": tostaff
                             }
                         ]
                     },
@@ -2719,6 +2728,16 @@ Save_Python_Course_Whatsapp: async function (Python_Whatsapp_) {
 		console.log(Python_Whatsapp_.header)
 		console.log(Python_Whatsapp_.to)
 
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const trainer_name = sanitizeString(Python_Whatsapp_.trainer_name.toString()); // Ensure it's a string
+		  const batch_start_date = sanitizeString(Python_Whatsapp_.batch_start_date);
+		  const tostaff = sanitizeString(Python_Whatsapp_.tostaff.toString()); 
+		  const student = sanitizeString(Python_Whatsapp_.student.toString());
+
+
 		const data = {
 			"to": ""+Python_Whatsapp_.to+"",
 			"type": "template",
@@ -2729,19 +2748,19 @@ Save_Python_Course_Whatsapp: async function (Python_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.trainer_name
+						"text": trainer_name
 					},
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.batch_start_date
+						"text": batch_start_date
 					},
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.tostaff
+						"text": tostaff
 					},
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.student
+						"text": student
 					}
 				]
 			},
@@ -2774,6 +2793,16 @@ Save_Dm_Course_Whatsapp: async function (Dm_Whatsapp_) {
 		console.log(Dm_Whatsapp_.header)
 		console.log(Dm_Whatsapp_.to)
 
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const trainer_name = sanitizeString(Dm_Whatsapp_.trainer_name.toString()); // Ensure it's a string
+		  const batch_start_date = sanitizeString(Dm_Whatsapp_.batch_start_date);
+		  const tostaff = sanitizeString(Dm_Whatsapp_.tostaff.toString()); 
+		  const student = sanitizeString(Dm_Whatsapp_.student.toString());
+
+
 		const data = {
 			"to": ""+Dm_Whatsapp_.to+"",
 			"type": "template",
@@ -2784,19 +2813,19 @@ Save_Dm_Course_Whatsapp: async function (Dm_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.trainer_name
+						"text": trainer_name
 					},
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.batch_start_date
+						"text": batch_start_date
 					},
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.tostaff
+						"text": tostaff
 					},
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.student
+						"text": student
 					}
 				]
 			},
@@ -2828,6 +2857,15 @@ Save_Test_Course_Whatsapp: async function (Testing_Whatsapp_) {
 		console.log(Testing_Whatsapp_.header)
 		console.log(Testing_Whatsapp_.to)
 
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const trainer_name = sanitizeString(Testing_Whatsapp_.trainer_name.toString()); // Ensure it's a string
+		  const batch_start_date = sanitizeString(Testing_Whatsapp_.batch_start_date);
+		  const tostaff = sanitizeString(Testing_Whatsapp_.tostaff.toString()); 
+		  const student = sanitizeString(Testing_Whatsapp_.student.toString());
+
 		const data = {
 			"to": ""+Testing_Whatsapp_.to+"",
 			"type": "template",
@@ -2838,19 +2876,19 @@ Save_Test_Course_Whatsapp: async function (Testing_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.trainer_name
+						"text": trainer_name
 					},
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.batch_start_date
+						"text": batch_start_date
 					},
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.tostaff
+						"text": tostaff
 					},
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.student
+						"text": student
 					}
 				]
 			},
@@ -2881,8 +2919,17 @@ Python_Fees_Whatsapp: async function (Python_Whatsapp_) {
 
 	try {
 
+
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const to = sanitizeString(Python_Whatsapp_.to.toString()); // Ensure it's a string
+		  const student = sanitizeString(Python_Whatsapp_.student);
+		  const tostaff = sanitizeString(Python_Whatsapp_.tostaff.toString()); 
+		  
 		const data = {
-			"to": ""+Python_Whatsapp_.to+"",
+			"to": to,
 			"type": "template",
 			"templateName": "api_trackbox_fee_installment_python_jan2023",
 			"language": "en",
@@ -2891,11 +2938,11 @@ Python_Fees_Whatsapp: async function (Python_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.student
+						"text": student
 					},
 					{
 						"type": "text",
-						"text": Python_Whatsapp_.tostaff
+						"text": tostaff
 					}
 				]
 			},
@@ -2926,8 +2973,16 @@ Dm_Fees_Whatsapp: async function (Dm_Whatsapp_) {
 
 	try {
 
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const to = sanitizeString(Dm_Whatsapp_.to.toString()); // Ensure it's a string
+		  const student = sanitizeString(Dm_Whatsapp_.student);
+		  const tostaff = sanitizeString(Dm_Whatsapp_.tostaff.toString()); 
+
 		const data = {
-			"to": ""+Dm_Whatsapp_.to+"",
+			"to": to,
 			"type": "template",
 			"templateName": "api_trackbox_fee_installment_dm_jan2023",
 			"language": "en",
@@ -2936,11 +2991,11 @@ Dm_Fees_Whatsapp: async function (Dm_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.student
+						"text": student
 					},
 					{
 						"type": "text",
-						"text": Dm_Whatsapp_.tostaff
+						"text": tostaff
 					}
 				]
 			},
@@ -2970,8 +3025,18 @@ Dm_Fees_Whatsapp: async function (Dm_Whatsapp_) {
 Testing_Fees_Whatsapp: async function (Testing_Whatsapp_) {
 
 	try {
+
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const to = sanitizeString(Testing_Whatsapp_.to.toString()); // Ensure it's a string
+		  const student = sanitizeString(Testing_Whatsapp_.student);
+		  const tostaff = sanitizeString(Testing_Whatsapp_.tostaff.toString()); 
+
+
 		const data = {
-			"to": ""+Testing_Whatsapp_.to+"",
+			"to": to,
 			"type": "template",
 			"templateName": "api_trackbox_fee_installment_testing_jan2023",
 			"language": "en",
@@ -2980,11 +3045,11 @@ Testing_Fees_Whatsapp: async function (Testing_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.student
+						"text": student
 					},
 					{
 						"type": "text",
-						"text": Testing_Whatsapp_.tostaff
+						"text": tostaff
 					}
 				]
 			},
@@ -3014,11 +3079,26 @@ Testing_Fees_Whatsapp: async function (Testing_Whatsapp_) {
 
 
 Fees_Payment_Whatsapp: async function (Fees_Whatsapp_) {
+	console.log('Fees_Whatsapp_: ', Fees_Whatsapp_);
 
 	try {
 
+		function sanitizeString(str) {
+			// Remove newlines, tabs, and more than 4 consecutive spaces
+			return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+		  }
+		  const to = sanitizeString(Fees_Whatsapp_.to.toString()); // Ensure it's a string
+		  const student = sanitizeString(Fees_Whatsapp_.student);
+		  const payment_amount = sanitizeString(Fees_Whatsapp_.payment_amount.toString()); 
+		  const pending_amount = sanitizeString(Fees_Whatsapp_.pending_amount.toString()); 
+		  const next_payment_date = sanitizeString(Fees_Whatsapp_.next_payment_date.toString()); 
+		  const tostaff = sanitizeString(Fees_Whatsapp_.tostaff.toString()); 
+
+
+
+
 		const data = {
-			"to": ""+Fees_Whatsapp_.to+"",
+			"to": to,
 			"type": "template",
 			"templateName": "api_trackbox_fee_jan2023",
 			"language": "en",
@@ -3027,24 +3107,24 @@ Fees_Payment_Whatsapp: async function (Fees_Whatsapp_) {
 				"parameters": [
 					{
 						"type": "text",
-						"text": Fees_Whatsapp_.student
+						"text": student
 					},
 					{
 						"type": "text",
-						"text": Fees_Whatsapp_.payment_amount
+						"text": payment_amount
 					},
 					{
 						"type": "text",
-						"text": Fees_Whatsapp_.pending_amount
+						"text": pending_amount
 					},
 					{
 						"type": "text",
-						"text": Fees_Whatsapp_.next_payment_date
+						"text": next_payment_date
 					}
 					,
 					{
 						"type": "text",
-						"text": Fees_Whatsapp_.tostaff
+						"text": tostaff
 					}
 				]
 			},
@@ -3056,7 +3136,7 @@ Fees_Payment_Whatsapp: async function (Fees_Whatsapp_) {
 				'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
 			} });
 		// console.log(body)
-		console.log(response)
+		// console.log(response)
 		return response.data;
 		
 	}

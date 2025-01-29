@@ -872,11 +872,11 @@ var Automatic_App_Notification = function(callback)
       }
     else
       {
-        console.log(rows)
+        // console.log(rows)
         var values = [];
         var t1 = [];
          values = rows;
-       console.log(rows)
+      //  console.log(rows)
         t1= values[0]
         t2= values[1]
         t3= values[2]
@@ -909,94 +909,240 @@ var Automatic_App_Notification = function(callback)
             // console.log(response)
         });
         }
-        for(var i = 0; i < t2.length; i++)
-        {
-           data = {
-            "to": ""+t2[i].Phone+"",
-            "type": "template",
-            "templateName": "api_trackbox_due_fee_reminder_jan2023",
-            "language": "en",
-            "header": {
-              "parameters": [
-              {
-              "type": "image",
-              "image": {
-              "link": "https://oneteam1267.trackbox.in/qrcode.png" }
-              }
-              ]
-              },
-            "body":{
-              "parameters": [
-                {
-                  "type": "text",
-                  "text": t2[i].Student
-                },
-                {
-                  "type": "text",
-                  "text": t2[i].Amount
-                },
-                {
-                  "type": "text",
-                  "text": t2[i].DueDate
-                },
-                {
-                  "type": "text",
-                  "text": t2[i].UserMobile
-                }
-              ]
-            },
-            "button": null
-          };
-          console.log(data)
-             response =  axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, { headers: {
-              'Content-Type': 'application/json',
-              'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'              
-            } });
-            // console.log(response.data) 
+
+        function sanitizeString(str) {
+          // Remove newlines, tabs, and more than 4 consecutive spaces
+          return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
         }
+
+
+
+
+        for (var i = 0; i < t2.length; i++) {
+          // Sanitizing each data field
+          const phone = sanitizeString(t2[i].Phone.toString()); // Ensure it's a string
+          const student = sanitizeString(t2[i].Student);
+          const amount = sanitizeString(t2[i].Amount.toString()); // Convert to string if it's a number
+          const dueDate = sanitizeString(t2[i].DueDate.toString()); // Convert to string if needed
+          const userMobile = sanitizeString(t2[i].UserMobile.toString()); // Ensure it's a string
+      
+          const data = {
+              "to": phone,
+              "type": "template",
+              "templateName": "api_trackbox_due_fee_reminder_jan2023",
+              "language": "en",
+              "header": {
+                  "parameters": [
+                      {
+                          "type": "image",
+                          "image": {
+                              "link": "https://oneteam1267.trackbox.in/qrcode.png"
+                          }
+                      }
+                  ]
+              },
+              "body": {
+                  "parameters": [
+                      {
+                          "type": "text",
+                          "text": student // Use sanitized student data
+                      },
+                      {
+                          "type": "text",
+                          "text": amount // Use sanitized amount data
+                      },
+                      {
+                          "type": "text",
+                          "text": dueDate // Use sanitized due date data
+                      },
+                      {
+                          "type": "text",
+                          "text": userMobile // Use sanitized user mobile data
+                      }
+                  ]
+              },
+              "button": null
+          };
+      
+          console.log(data);
+          console.log('Phone:', phone);
+          console.log('Student:', student);
+          console.log('Amount:', amount);
+          console.log('DueDate:', dueDate);
+          console.log('UserMobile:', userMobile);
+      
+          try {
+              const response = axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, {
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+                  }
+              });
+              console.log('Response:', response.data); // Check the response
+          } catch (error) {
+              console.error("Error sending message:", error); // Log the error
+          }
+      }
+
+      
+        // for(var i = 0; i < t2.length; i++)
+        // {
+        //    data = {
+        //     "to": ""+t2[i].Phone+"",
+        //     "type": "template",
+        //     "templateName": "api_trackbox_due_fee_reminder_jan2023 rweqr",
+        //     "language": "en",
+        //     "header": {
+        //       "parameters": [
+        //       {
+        //       "type": "image",
+        //       "image": {
+        //       "link": "https://oneteam1267.trackbox.in/qeeeercode.png" }
+        //       }
+        //       ]
+        //       },
+        //     "body":{
+        //       "parameters": [
+        //         {
+        //           "type": "text",
+        //           "text": t2[i].Student
+        //         },
+        //         {
+        //           "type": "text",
+        //           "text": t2[i].Amount
+        //         },
+        //         {
+        //           "type": "text",
+        //           "text": t2[i].DueDate
+        //         },
+        //         {
+        //           "type": "text",
+        //           "text": t2[i].UserMobile
+        //         }
+        //       ]
+        //     },
+        //     "button": null
+        //   };
+        //   // console.log(data)
+        //      response =  axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, { headers: {
+        //       'Content-Type': 'application/json',
+        //       'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'              
+        //     } });
+        //     // console.log(response.data) 
+        // }
         // return response.data;
-        for(var i = 0; i < t3.length; i++)
-        {
-           data = {
-            "to": ""+t3[i].Phone+"",
-            "type": "template",
-            "templateName": "api_trackbox_over_due_fee_reminder_jan2023",
-            "language": "en",
-            "header": {
-              "parameters": [
-              {
-              "type": "image",
-              "image": {
-              "link": "http://oneteam1267.trackbox.in/qrcode.png" }
-              }
-              ]
+
+        // Sanitize function to remove unwanted characters
+
+
+        // for(var i = 0; i < t3.length; i++)
+        // {
+        //    data = {
+        //     "to": ""+t3[i].Phone+"",
+        //     "type": "template",
+        //     "templateName": "api_trackbox_over_due_fee_reminder_jan2023",
+        //     "language": "en",
+        //     "header": {
+        //       "parameters": [
+        //       {
+        //       "type": "image",
+        //       "image": {
+        //       "link": "http://oneteam1267.trackbox.in/qrcode.png" }
+        //       }
+        //       ]
+        //       },
+        //     "body":{
+        //       "parameters": [
+        //         {
+        //           "type": "text",
+        //           "text":t3[i].Student
+                 
+        //         },
+        //         {
+        //           "type": "text",
+        //           "text":t3[i].Amount
+        //         },                
+        //         {
+        //           "type": "text",
+        //           "text":t3[i].UserMobile
+        //         }
+        //       ]
+        //     },
+        //     "button": null
+        //   };
+        //   console.log(data)
+        //   console.log('t3[i].Student: ',t3[i].Student);
+        //   console.log('t3[i].Amount: ',t3[i].Amount);
+        //   console.log('t3[i].UserMobile: ',t3[i].UserMobile);
+        //      response =  axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, { headers: {
+        //       'Content-Type': 'application/json',
+        //       'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+        //     } });
+        //     console.log(response)
+        // }
+
+
+        for (var i = 0; i < t3.length; i++) {
+          // Sanitizing each data field
+          const student = sanitizeString(t3[i].Student);
+          const amount = sanitizeString(t3[i].Amount.toString());  // Convert to string if it's a number
+          const userMobile = sanitizeString(t3[i].UserMobile.toString());  // Convert to string if it's a number
+          
+          const data = {
+              "to": "" + t3[i].Phone + "",
+              "type": "template",
+              "templateName": "api_trackbox_over_due_fee_reminder_jan2023",
+              "language": "en",
+              "header": {
+                  "parameters": [
+                      {
+                          "type": "image",
+                          "image": {
+                              "link": "http://oneteam1267.trackbox.in/qrcode.png"
+                          }
+                      }
+                  ]
               },
-            "body":{
-              "parameters": [
-                {
-                  "type": "text",
-                  "text": t3[i].Student
-                },
-                {
-                  "type": "text",
-                  "text": t3[i].Amount
-                },                
-                {
-                  "type": "text",
-                  "text": t3[i].UserMobile
-                }
-              ]
-            },
-            "button": null
+              "body": {
+                  "parameters": [
+                      {
+                          "type": "text",
+                          "text": student  // Use sanitized student data
+                      },
+                      {
+                          "type": "text",
+                          "text": amount  // Use sanitized amount data
+                      },
+                      {
+                          "type": "text",
+                          "text": userMobile  // Use sanitized user mobile data
+                      }
+                  ]
+              },
+              "button": null
           };
-          // console.log(data)
-             response =  axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, { headers: {
-              'Content-Type': 'application/json',
-              'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
-            } });
-            // console.log(response)
-        }
-        return response.data;
+          
+          console.log(data);
+          console.log('t3[i].Student: ', student);
+          console.log('t3[i].Amount: ', amount);
+          console.log('t3[i].UserMobile: ', userMobile);
+      
+          try {
+              const response =  axios.post("https://api.telinfy.net/gaca/whatsapp/templates/message", data, {
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Api-Key': '0ea03cd8-169f-4f50-8254-94f50dbcfdaa'
+                  }
+              });
+              console.log(response.data);  // Check the response
+          } catch (error) {
+              console.error("Error sending message: ", error);  // Log the error
+          }
+      }
+
+
+
+        // return response.data;
       }   
     }
   );
@@ -1020,6 +1166,11 @@ var feedback_whatsapp_data = function (callback) {
   return db.query("CALL feedback_whatsapp_data()", [], callback);
 };
 
+function sanitizeString(str) {
+  // Remove newlines, tabs, and more than 4 consecutive spaces
+  return str.replace(/[\n\t]/g, '').replace(/ {5,}/g, '    ');
+}
+
 // Schedule the cron job for every Saturday at 7:00 PM
 // var fdbck = cron.schedule('00 19 00 * 6', async function () {
   var fdbck = cron.schedule('00 00 00 * * *',function()  {
@@ -1035,8 +1186,13 @@ var feedback_whatsapp_data = function (callback) {
         for (let i = 0; i < dataRows.length; i++) {
           const d1 = dataRows[i];
 
+          const Whatsapp = sanitizeString(d1.Whatsapp.toString()); // Ensure it's a string
+          const Student_Name = sanitizeString(d1.Student_Name);
+          const Faculty_Name = sanitizeString(d1.Faculty_Name.toString()); // Convert to string if it's a number
+          
+
           const data = {
-            to: `91${d1.Whatsapp}`, // Ensure this is a valid phone number
+            to: `91${Whatsapp}`, // Ensure this is a valid phone number
             type: "template",
             templateName: "api_learner_feedback_arjun_jan2025",
             language: "en",
@@ -1045,11 +1201,11 @@ var feedback_whatsapp_data = function (callback) {
               parameters: [
                 {
                   type: "text",
-                  text: d1.Student_Name,
+                  text: Student_Name,
                 },
                 {
                   type: "text",
-                  text: d1.Faculty_Name,
+                  text: Faculty_Name,
                 },
               ],
             },

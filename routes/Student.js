@@ -3081,7 +3081,7 @@ router.get("/Search_Agreement_Details/", function (req, res, next) {
 			const resp = await Student.Fees_Payment_Whatsapp(req.body);
 			return res.send(resp);
 		} catch (e) {
-			console.log(e)
+			// console.log(e)
 			return res.send(e);
 		}
 	});
